@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} Login {% endblock %}
+{%  block content %}
+    
+<h1 style="padding-left: 10rem ">Login</h1>
+<br/><br/>
+
+<div class="form-group" style="padding-left: 10rem;">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary" >Login</button> 
+    </form>
+    
+</div>
+
+{% endblock %}

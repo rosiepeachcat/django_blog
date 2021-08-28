@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <title>
+        {% block title %}Between Epiphanies{% endblock %}
+    </title>
+  </head>
+  <style>
+    a {
+    text-decoration: none;
+    }
+    li {
+    list-style: none;
+    }
+    /* Nav Bar*/
+    .header {
+      background-color: rgb(255, 255, 255);
+      text-align: center;
+      overflow: hidden;
+      padding-top: 2rem;
+    }
+    .header a{
+      font: 500 1.2rem/1.5 "Besley";  
+      color: rgb(48, 48, 48); 
+      text-decoration: none;
+      letter-spacing: 1px;
+      float: left;
+      padding-left: 5rem;
+    }
+
+    .navbar{
+      float: right;
+    }
+
+    #author_btn{
+      font: 400 0.8rem/1.5 "Besley";  
+      color: rgb(180, 180, 180); 
+      text-decoration: none;
+      padding-right: 22px;
+      padding-left: 22px;
+      display: inline-block;
+
+    }
+
+    .navbar ul a{
+      font: 400 0.9rem/1.5 "Besley";  
+      color: rgb(0, 0, 0); 
+      text-decoration: none;
+      padding-right: 22px;
+      padding-left: 22px;
+      display: inline-block;
+    }
+
+    .navbar ul a:hover{
+      color:#bfba55;
+    }
+
+    #menuToggle {
+      display: none;
+    }
+    .menu-icon {
+      display: none;
+    }
+
+  @media screen and (max-width: 768px) {
+    .navbar {
+      width: 100%;
+      height: auto;
+    }
+    .navbar ul {
+      display: block;
+      max-height: 0;
+    	overflow: hidden;
+    	transition: max-height 0.3s;
+    }
+    .navbar ul a {
+        font: 400 1.0rem/1.5 "Besley";  
+        color: rgb(48, 48, 48); 
+        text-decoration: none;
+        letter-spacing: 1px;
+        -webkit-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+        padding-right: 22px;
+        padding-left: 22px;
+    }
+    .menu-icon {
+        width: 100px;
+        height: inherit;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        line-height: 60px;
+    }
+    #menuToggle:checked ~ ul {
+        max-height: 350px;
+    }
+    .menu-icon i {
+        font-size: 1.7em;
+    }
+  }
+  
+  </style>
+
+<body>
+<!-- Navigation section  -->
+  <div class="header">
+    <a id="blog_name" href="{% url 'home' %}">Between Epiphanies</a>
+    <nav class="navbar">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle" class="menu-icon"><i class="fa fa-bars"></i></label>
+      <ul>
+          <a href="{% url 'home' %}"><li>Home</li></a>
+          {% if category_menu %}
+            {% for item in category_menu %}
+              <a href="{% url 'category' item %}"><li>{{ item }}</li></a> 
+            {% endfor %}
+          {% endif %}
+    
+          {% if user.is_authenticated %}
+          <a href="{% url 'add_post' %}"><li>New Post</li></a>
+          <a href="{% url 'add_category' %}"><li>New Category</li></a>
+          <a class="author_nav" href="{% url 'logout' %}"><li>Logout</li></a>
+          {% else %}
+        <a id="author_btn" href="{% url 'login' %}"> <li>Author Login</li></a>
+          {% endif %}
+      </ul> 
+    </nav>
+  </div>
+    <br/>
+<div class="container">
+    {%  block content %}
+
+    {% endblock %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+  <!--Footer-->
+
+</body>
+
+
+</html>

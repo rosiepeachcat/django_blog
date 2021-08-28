@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{%  block content %}
+
+<style>
+    .blog-post-tile{
+        padding-top: 32px;
+        padding-bottom: 62px;
+        margin-bottom: 32px;
+    }
+
+    .blog-post-tile:last-child {
+        border-bottom: 0px;
+        padding-bottom: 32px;
+        margin-bottom: 0px;
+    }
+
+    .post-title a {font: 400 1.6rem/1.5 "Besley"; color: rgb(56, 54, 54); margin-bottom: 0.5rem; text-decoration:underline;}
+    .post-title a:hover {color: #bfba55;}
+    .author_date {padding-bottom: 22px;}
+
+    h1 { font: 400 1.8rem/1.5 "Besley"; color: rgb(51, 51, 51); margin-bottom: 0.5rem; text-align: center;}
+    h3 { font: 700 1.0rem/1.5 "Besley"; color: rgb(63, 63, 63); margin-bottom: 0.5rem; }
+    h4 {font: 400 1.0rem/1.5 "Besley"; color: rgb(61, 61, 61); text-align: justify; text-justify: inter-word;}
+
+    @media(max-width: 8.5in) {:h1{font-size: 1.0rem;}}
+    @media(max-width: 5.0in) {:root{font-size: 16px;}}
+</style>
+
+{% if category_posts %}
+    <h1>{{ categories }}</h1>
+
+    <u1>
+        {% for post in category_posts %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10 col-sm-12"></div>
+                        <div class="blog-post-tile">
+                            <div class="post-title">
+                                <h2><a href="{% url 'blog-detail' post.pk %}">{{post.title }}</a></h2>
+                            </div>
+                            <div class="author_date">
+                                <h3>{{ post.author.last_name }} {{ post.author.first_name }} &emsp; {{post.post_date}} </h3>  
+                            </div>
+                            <div class="blog-post-des">
+                                <h4>{{ post.quote|safe }}</h4>
+                                <!--a href="{% url 'blog-detail' post.pk %}" class="btn btn-default">Continue Reading</a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <hr>  
+                </div>
+                  
+            </div> 
+        {% endfor %}         
+    </ul>
+        
+{% else %}
+    <h2>Non-existent page</h2>
+{% endif %}    
+
+{% endblock %}
+

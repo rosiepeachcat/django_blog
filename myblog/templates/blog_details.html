@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{%  block title %}{{ post.title_tag }}{% endblock %}
+{%  block content %}
+<link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+    #post_title{font: 700 2.6rem/1.5 "Besley";  color: rgb(48, 48, 48); margin-bottom: 0.8rem; }
+    #author_date{ font: 400 1.0rem/1.5 "Merriweather"; color: rgb(131, 130, 130); margin-bottom: 1.0rem;}
+    #quote{ font: 400 1.2rem/2 "Besley"; font-style: italic; color: hsl(250, 7%, 34%); text-align: justify; text-justify: inter-word; margin-top: 2.0rem; margin-bottom: 3.0rem;}
+    #body{ font: 500 1.1rem/2 "Besley"; color: hsl(000, 0%, 33%);text-align: justify; text-justify: inter-word; line-break: auto;}
+    .blog_content{padding: 0.5in 0.5in 0.5in;}
+    
+    .back_button .btn {
+    border-radius: 100px;
+    color: #777;
+    border-color: rgb(187, 186, 186);
+    font: 400 0.8rem "Merriweather";
+    letter-spacing: 1px;
+    padding: 15px 18px;
+    margin-top: 26px;
+    transition: all 0.4s ease-in-out;
+    }
+
+    .back_button .btn:hover {
+    background: #bfba55;
+    border-color: transparent;
+    color: #ffffff;
+    }
+
+    img{
+        max-width:100%;
+        height:auto;
+    }
+</style>
+<div class="blog_content">
+    <h1 id="post_title">{{ post.title }}</h1>
+    <h2 id="author_date">By &emsp; {{ post.author.first_name}} {{post.author.last_name}} on {{post.post_date}} &emsp;- {{post.category}}</h2>
+    <hr>
+    <h3 id="quote"><i>{{ post.quote|safe }}</i></h3>
+    <div id="body">{{ post.body|safe }}</div>
+    <br/><br/>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'edit_post' post.pk %}" class="btn btn-secondary">Edit</a>
+    <a href="{% url 'delete_post' post.pk %}" class="btn btn-secondary">Delete</a>
+    {% endif %}
+</div>
+
+
+{% endblock %}
