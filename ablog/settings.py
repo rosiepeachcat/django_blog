@@ -18,7 +18,7 @@ from pathlib import Path
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-pkk4ts73cj%7(t2%@d@!nj9mrokw89jrv%h^_n2gmef%-@=-_b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['betweenepiphaniesblog.herokuapp.com', 'localhost:8000']
 
 
 # Application definition
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR,
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
