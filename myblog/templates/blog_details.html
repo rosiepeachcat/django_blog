@@ -6,7 +6,7 @@
 <style>
     #post_title{font: 700 2.6rem/1.5 "Besley";  color: rgb(48, 48, 48); margin-bottom: 0.8rem; }
     #author_date{ font: 400 1.0rem/1.5 "Merriweather"; color: rgb(131, 130, 130); margin-bottom: 1.0rem;}
-    #quote{ font: 400 1.2rem/2 "Besley"; font-style: italic; color: hsl(250, 7%, 34%); text-align: justify; text-justify: inter-word; margin-top: 2.0rem; margin-bottom: 3.0rem;}
+    #quote{ font: 400 1.1rem/2 "Besley"; font-style: italic; color: hsl(250, 7%, 34%); text-align: justify; text-justify: inter-word; margin-top: 2.0rem; margin-bottom: 3.0rem;}
     #body{ font: 500 1.1rem/2 "Besley"; color: hsl(000, 0%, 33%);text-align: justify; text-justify: inter-word; line-break: auto;}
     .blog_content{padding: 0.5in 0.5in 0.5in;}
     
@@ -31,6 +31,9 @@
         max-width:100%;
         height:auto;
     }
+
+    @media(max-width: 8.5in) {:h1{font-size: 1.0rem;}}
+    @media(max-width: 5.0in) {:root{font-size: 12px;}}
 </style>
 <div class="blog_content">
     <h1 id="post_title">{{ post.title }}</h1>
